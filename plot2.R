@@ -7,7 +7,7 @@
 library(dplyr)
 
 # read the data if necessary
-  if (!any(ls()== "NEI")) NEI <- readRDS("summarySCC_PM25.rds")
+if (!exists("NEI")) NEI <- readRDS("summarySCC_PM25.rds")
 
 # filter and aggregate the data
   data <- NEI %>% filter(fips=="24510") %>% group_by(year) %>%  summarise(sum(Emissions)) 
@@ -24,7 +24,7 @@ library(dplyr)
          type = "o",
          lwd  = 3,
          col  = "darkgreen",
-         main = "Total emissions in Baltimore City, Maryland (1999-2008)",
+         main = "Total emissions in Baltimore City, Maryland",
          ylab = "Emissions, tons",
          xlab = "Year"
     )
@@ -37,6 +37,6 @@ library(dplyr)
   plot2()
 
 # and to a PNG file
-  png(filename="plot1.png")
+  png(filename="plot2.png")
   plot2()
   dev.off()

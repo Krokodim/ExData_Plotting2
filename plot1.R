@@ -8,7 +8,7 @@
 library(dplyr)
 
 # read the data if necessary
-  if (!any(ls()== "NEI")) NEI <- readRDS("summarySCC_PM25.rds")
+if (!exists("NEI")) NEI <- readRDS("summarySCC_PM25.rds")
 
 # aggregate the data
   data <- NEI %>% group_by(year) %>%  summarise(sum(Emissions)/1000) 
@@ -19,14 +19,15 @@ library(dplyr)
 # a function that does the plot
   plot1 <- function(){
   
-    pp<-par(mfrow=c(1,1))
+    pp<-par(mfrow=c(1,1), mar=c(5,5,4,2))
     
     plot(data,
          type = "o",
          lwd  = 2,
          col  = "darkgreen",
-         main = "Total emissions (1999-2008)",
-         ylab = "Emissions, kilotons",
+         main = "Total emissions in USA",
+         ylab = expression("Emissions, tons ? 10"^{3}),
+         #margins = c(1,2,1,1),
          xlab = "Year"
     )
     
