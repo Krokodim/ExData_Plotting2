@@ -1,7 +1,3 @@
-## This first line will likely take a few seconds. Be patient!
-if (!any(ls()== "NEI")) NEI <- readRDS("summarySCC_PM25.rds")
-if (!any(ls()== "SCC")) SCC <- readRDS("Source_Classification_Code.rds")
-
 ########################################################################
 #  1. Have total emissions from PM2.5 decreased in the United States   #
 #     from 1999 to 2008? Using the base plotting system, make a plot   #
@@ -11,14 +7,47 @@ if (!any(ls()== "SCC")) SCC <- readRDS("Source_Classification_Code.rds")
 
 library(dplyr)
 
-data <- NEI %>% group_by(year) %>%  summarise(sum(Emissions)/1000) 
-colnames(data) <- c("year", "emissions")
+# read the data if necessary
+  if (!any(ls()== "NEI")) NEI <- readRDS("summarySCC_PM25.rds")
 
-plot(data,
-     type = "l",
-     lwd  = 5,
-     col  = "darkgreen",
-     main = "Total emissions (1999-2008)",
-     ylab = "Emissions, kilotonns",
-     xlab = "Year"
-     )
+# aggregate the data
+  data <- NEI %>% group_by(year) %>%  summarise(sum(Emissions)/1000) 
+
+# set columns names for convenience
+  colnames(data) <- c("year", "emissions")
+
+# a function that does the plot
+  plot1 <- function(){
+  
+    pp<-par(mfrow=c(1,2))
+    
+    plot(data,
+         type = "o",
+         lwd  = 3,
+         col  = "darkgreen",
+         main = "Total emissions (1999-2008)",
+         ylab = "Emissions, kilotons",
+         xlab = "Year"
+    )
+    
+    barplot(
+      height = data$emissions,
+      width  = 1,
+      space  = .2,
+      names.arg = data$year,
+      col =  rgb(red=220,green=255,blue=230,alpha=220,NULL,255),
+      main = "Total emissions (1999-2008)",
+      xlab = "Year",
+      ylab = "Emissions, kilotons"
+    )
+    par(pp)
+    
+  }
+
+# draw the plot on the screen
+  plot1()
+
+# and to a PNG file
+  png(filename="plot1.png")
+  plot1()
+  dev.off()
