@@ -19,27 +19,17 @@ library(dplyr)
 # a function that does the plot
   plot1 <- function(){
   
-    pp<-par(mfrow=c(1,2))
+    pp<-par(mfrow=c(1,1))
     
     plot(data,
          type = "o",
-         lwd  = 3,
+         lwd  = 2,
          col  = "darkgreen",
          main = "Total emissions (1999-2008)",
          ylab = "Emissions, kilotons",
          xlab = "Year"
     )
     
-    barplot(
-      height = data$emissions,
-      width  = 1,
-      space  = .2,
-      names.arg = data$year,
-      col =  rgb(red=220,green=255,blue=230,alpha=220,NULL,255),
-      main = "Total emissions (1999-2008)",
-      xlab = "Year",
-      ylab = "Emissions, kilotons"
-    )
     par(pp)
     
   }
