@@ -25,6 +25,9 @@ library(ggplot2)
     # construct the plot
       g <- ggplot(data, aes(year, emissions))
   
+    # format the X axis
+      g <- g + scale_x_continuous(breaks=c(1999:2008))
+      
     # split into horizontal facets by types
       g <- g + facet_grid(type ~ ., scales='free_y') 
   

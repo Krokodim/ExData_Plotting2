@@ -22,7 +22,10 @@ library(ggplot2)
   plot4 <- function(){
     # construct the plot
       g <- ggplot(data, aes(year, emissions))
-  
+
+    # format the X axis
+      g <- g + scale_x_continuous(breaks=c(1999:2008))
+      
     # draw a green line fo emissions
       g <- g + geom_line (color="darkgreen",  lwd=2) 
       
