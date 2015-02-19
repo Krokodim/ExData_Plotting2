@@ -10,6 +10,7 @@ library(dplyr)
 library(ggplot2)
 
 # read the data if necessary
+
   if (!exists("NEI")) NEI <- readRDS("summarySCC_PM25.rds")
 
 
@@ -46,8 +47,6 @@ library(ggplot2)
       return(g)
   }
  
-
-
 # construct the plot 
   g <- plot3()
 
