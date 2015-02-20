@@ -26,18 +26,18 @@ library(ggplot2)
     # format the X axis
       g <- g + scale_x_continuous(breaks=c(1999:2008))
       
-    # draw a green line fo emissions
-      g <- g + geom_line (color="darkgreen",  lwd=2) 
+    # enough lines :) here draw an area fo emissions
+      g <- g + geom_area (fill="steelblue",alpha = 1/5) 
       
     # draw thick points
-      g <- g + geom_point(color="darkgreen", size=3) 
+      g <- g + geom_point(color="steelblue", size=2) 
   
     # label the plot & axes  
       g <- g +  labs(
                   list(
                     title = "Total coal combustion-related emissions in USA", 
                     x = "Year", 
-                    y = expression("Total emissions, tons ? 10"^{3}),
+                    y = expression("Total emissions, tons * 10"^{3}),
                     sub = ""
                   )
                 )

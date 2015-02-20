@@ -24,11 +24,15 @@ if (!exists("NEI")) NEI <- readRDS("summarySCC_PM25.rds")
     plot(data,
          type = "o",
          lwd  = 3,
-         col  = "darkgreen",
+         col  = "steelblue",
          main = "Total emissions in Baltimore City, Maryland",
          ylab = "Emissions, tons",
          xlab = "Year"
     )
+    
+    grid(nx=25,ny=30)
+    
+    axis(1, at=c(1999:2008))    
     
     par(pp)
     

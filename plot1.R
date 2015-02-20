@@ -5,14 +5,13 @@
 #     the years 1999, 2002, 2005, and 2008.                            #
 ########################################################################
 
-
 library(dplyr)
 
 # read the data if necessary
 if (!exists("NEI")) NEI <- readRDS("summarySCC_PM25.rds")
 
 # aggregate the data
-  data <- NEI %>% group_by(year) %>%  summarise(sum(Emissions)/1000) 
+  data <- NEI %>% group_by(year) %>%  summarise(sum(Emissions)/10^6) 
 
 # set columns names for convenience
   colnames(data) <- c("year", "emissions")
@@ -24,13 +23,16 @@ if (!exists("NEI")) NEI <- readRDS("summarySCC_PM25.rds")
     
     plot(data,
          type = "o",
-         lwd  = 2,
-         col  = "darkgreen",
-         main = "Total emissions in USA",
-         ylab = expression("Emissions, tons ? 10"^{3}),
-         #margins = c(1,2,1,1),
+         lwd  = 3,
+         col  = "steelblue",
+         main = expression("Total PM"[2.5]*" emissions in USA"),
+         ylab = expression("Emissions, tons * 10"^{6}),
          xlab = "Year"
     )
+    
+    grid(nx=25,ny=30)
+    
+    axis(1, at=c(1999:2008))
     
     par(pp)
     

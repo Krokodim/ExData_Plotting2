@@ -1,5 +1,5 @@
 ###########################################################################
-#  4.How have emissions from motor vehicle sources changed from 1999–2008 #
+#  5.How have emissions from motor vehicle sources changed from 1999–2008 #
 #    in Baltimore City?                                                   #
 ###########################################################################
 
@@ -20,17 +20,14 @@ library(ggplot2)
 # a function that does the plot
   plot5 <- function(){
     # construct the plot
-      g <- ggplot(data, aes(year, emissions))
+      g <- ggplot(data, aes(year, emissions)) + theme_bw()
       
     # format the X axis
-      g <- g + scale_x_continuous(breaks=c(1999:2008))
+      g <- g + scale_x_continuous(breaks=c(1999,2002,2005,2008))
   
-    # draw a green line fo emissions
-      g <- g + geom_line (color="darkgreen",  lwd=2) 
+    # bars are also good for dynamic analysis...
+      g <- g + geom_bar (size=220, stat="identity", fill="steelblue", alpha=1/5) 
       
-    # draw thick points
-      g <- g + geom_point(color="darkgreen", size=3) 
-  
     # label the plot & axes  
       g <- g +  labs(
                   list(

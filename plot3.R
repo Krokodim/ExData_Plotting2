@@ -1,8 +1,8 @@
 ###########################################################################
 #  3.Of the four types of sources indicated by the type (point, nonpoint, #
 #    onroad, nonroad) variable, which of these four sources have seen     #
-#    decreases in emissions from 1999?2008 for Baltimore City? Which have #
-#    seen increases in emissions from 1999?2008? Use the ggplot2 plotting #
+#    decreases in emissions from 1999-2008 for Baltimore City? Which have #
+#    seen increases in emissions from 1999-2008? Use the ggplot2 plotting #
 #    system to make a plot answer this question.                          #
 ###########################################################################
 
@@ -31,11 +31,11 @@ library(ggplot2)
     # split into horizontal facets by types
       g <- g + facet_grid(type ~ ., scales='free_y') 
   
-    # draw a green line fo emissions
-      g <- g + geom_line (color="darkgreen", lwd=1) 
+    # draw a  line fo emissions
+      g <- g + geom_line (color="steelblue", lwd=1) 
       
     # draw thick points
-      g <- g + geom_point(color="darkgreen", size=2) 
+      g <- g + geom_point(color="steelblue", size=2) 
   
     # label the plot & axes  
       g <- g +  labs(
