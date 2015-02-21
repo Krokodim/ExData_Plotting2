@@ -9,6 +9,7 @@ library(ggplot2)
 
 # read the data if necessary
   if (!exists("NEI")) NEI <- readRDS("summarySCC_PM25.rds")
+  if (!exists("SCC")) SCC <- readRDS("Source_Classification_Code.rds")
 
 # filter and aggregate the data
   scc  <- SCC[grepl('Onroad', SCC$Data.Category, ignore.case=TRUE),"SCC"]
